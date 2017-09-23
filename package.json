@@ -1,0 +1,67 @@
+{
+  "name": "feathers-mocha-utils",
+  "description": "Utilities for testing a FeathersJS app with Mocha",
+  "version": "0.0.0",
+  "homepage": "https://github.com/feathersjs/feathers-mocha-utils",
+  "main": "lib/",
+  "keywords": [
+    "feathers",
+    "feathers-plugin"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/feathersjs/feathers-mocha-utils.git"
+  },
+  "author": {
+    "name": "Feathers contributors",
+    "url": "https://feathersjs.com"
+  },
+  "contributors": [
+    "Marshall Thompson <marshall@bitovi.com> (http://marshallthompson.net)",
+    "Steven Hansen <steven.hansen2015@gmail.com>"
+  ],
+  "bugs": {
+    "url": "https://github.com/feathersjs/feathers-mocha-utils/issues"
+  },
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "scripts": {
+    "publish": "git push origin --tags && npm run changelog && git push origin",
+    "release:pre": "npm version prerelease && npm publish --tag pre",
+    "release:patch": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish",
+    "changelog": "github_changelog_generator && git add CHANGELOG.md && git commit -am \"Updating changelog\"",
+    "lint": "standard lib/*.js lib/**/*.js test/*.js test/**/*.js --fix",
+    "mocha": "mocha --opts mocha.opts",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha -- --opts mocha.opts",
+    "test": "npm run lint && npm run coverage"
+  },
+  "standard": {
+    "sourceType": "module",
+    "env": [
+      "mocha"
+    ]
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^8.0.0",
+    "body-parser": "^1.18.2",
+    "chai": "^3.5.0",
+    "feathers": "^2.2.0",
+    "feathers-errors": "^2.9.2",
+    "feathers-hooks": "^2.0.2",
+    "feathers-hooks-common": "^3.7.3",
+    "feathers-memory": "^1.2.1",
+    "feathers-rest": "^1.8.0",
+    "feathers-socketio": "^2.0.0",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^3.5.2",
+    "standard": "^10.0.3"
+  }
+}
