@@ -1,7 +1,7 @@
 # feathers-mocha-utils
 
-[![Build Status](https://travis-ci.org/feathersjs/feathers-mocha-utils.png?branch=master)](https://travis-ci.org/feathersjs/feathers-mocha-utils)
-[![Dependency Status](https://img.shields.io/david/feathersjs/feathers-mocha-utils.svg?style=flat-square)](https://david-dm.org/feathersjs/feathers-mocha-utils)
+[![Build Status](https://travis-ci.org/feathers-plus/feathers-mocha-utils.png?branch=master)](https://travis-ci.org/feathers-plus/feathers-mocha-utils)
+[![Dependency Status](https://img.shields.io/david/feathers-plus/feathers-mocha-utils.svg?style=flat-square)](https://david-dm.org/feathers-plus/feathers-mocha-utils)
 [![Download Status](https://img.shields.io/npm/dm/feathers-mocha-utils.svg?style=flat-square)](https://www.npmjs.com/package/feathers-mocha-utils)
 
 > Utilities for testing a FeathersJS app with Mocha
