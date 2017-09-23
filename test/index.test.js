@@ -5,7 +5,25 @@ const app = require('./app')
 describe('feathers-mocha-utils', () => {
   it('has everything in place', function () {
     assert(utils.assert, 'assertion utils are in place')
-    assert(typeof utils.setup === 'function', 'the setup utility is in place')
+
+    const methods = [
+      'methodNotAllowed',
+      'requiresAuth',
+      'disableMultiItemChange',
+      'notImplemented',
+      'forbidden',
+      'canPatch',
+      'cannotPatch'
+    ]
+
+    // Make sure all methods are explicitly intended
+    Object.keys(utils.assert).forEach(method => {
+      assert(methods.includes(method))
+    })
+
+    methods.forEach(method => {
+      assert(typeof utils.assert[method] === 'function', 'the method was in place')
+    })
   })
 
   describe('Setup', function () {
