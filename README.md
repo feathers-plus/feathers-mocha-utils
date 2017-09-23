@@ -1,8 +1,6 @@
 # feathers-mocha-utils
 
 [![Build Status](https://travis-ci.org/feathersjs/feathers-mocha-utils.png?branch=master)](https://travis-ci.org/feathersjs/feathers-mocha-utils)
-[![Code Climate](https://codeclimate.com/github/feathersjs/feathers-mocha-utils/badges/gpa.svg)](https://codeclimate.com/github/feathersjs/feathers-mocha-utils)
-[![Test Coverage](https://codeclimate.com/github/feathersjs/feathers-mocha-utils/badges/coverage.svg)](https://codeclimate.com/github/feathersjs/feathers-mocha-utils/coverage)
 [![Dependency Status](https://img.shields.io/david/feathersjs/feathers-mocha-utils.svg?style=flat-square)](https://david-dm.org/feathersjs/feathers-mocha-utils)
 [![Download Status](https://img.shields.io/npm/dm/feathers-mocha-utils.svg?style=flat-square)](https://www.npmjs.com/package/feathers-mocha-utils)
 
@@ -11,39 +9,65 @@
 ## Installation
 
 ```
-npm install feathers-mocha-utils --save
+npm install feathers-mocha-utils
 ```
 
-## Documentation
+## Setting Up Your Project for Testing
+Before every test, the Feathers server needs to be running.  After all tests are complete, the server should close for the Node process to terminate.  You can create a setup utility in your local project to easily accomplish this with Mocha's `before` and `after` functions:
 
-Please refer to the [feathers-mocha-utils documentation](http://docs.feathersjs.com/) for more details.
+**setup.js**
+```js
+const app = require('../../src/app')
 
-## Complete Example
+let server
 
-Here's an example of a Feathers server that uses `feathers-mocha-utils`. 
+before(done => {
+  const port = app.get('port')
+  server = app.listen(port)
+  server.once('listening', () => {
+    setTimeout(done, 500)
+  })
+})
+
+after(done => {
+  server.close()
+  done()
+})
+```
+
+Require this file at the top of every test, and it will take care of making sure the server starts and stops when it's time.
+
+## Assertion Utilties
+Several assertion utilities are included:
+- [`methodNotAllowed`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L16)
+- [`requiresAuth`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L32)
+- [`disableMultiItemChange`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L48)
+- [`notImplemented`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L65)
+- [`forbidden`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L81)
+- [`canPatch`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L105)
+- [`cannotPatch`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L118)
+
+All of the assertion utilities are in the `assert` attribute of the default export. Here's an example of how to use the `assert.requiresAuth` util.  The example assumes you have a `/todos` service that requires authentication for every method.
 
 ```js
-const feathers = require('feathers');
-const rest = require('feathers-rest');
-const hooks = require('feathers-hooks');
-const bodyParser = require('body-parser');
-const errorHandler = require('feathers-errors/handler');
-const plugin = require('feathers-mocha-utils');
+require('../setup') // Start the server before tests run and close on finish
+const utils = require('feathers-mocha-utils')
+const app = require('path/to/app') // path to app.js
+const feathersClient = require('path/to/feathers-client') // path to feathers-client.js
 
-// Initialize the application
-const app = feathers()
-  .configure(rest())
-  .configure(hooks())
-  // Needed for parsing bodies (login)
-  .use(bodyParser.json())
-  .use(bodyParser.urlencoded({ extended: true }))
-  // Initialize your feathers plugin
-  .use('/plugin', plugin())
-  .use(errorHandler());
+const todoServiceOnClient = feathersClient.service('todos')
 
-app.listen(3030);
+describe('Todo Service - Unauthenticated Client', function () {
+  // These are the methods we want to test
+  const methods = ['find', 'get', 'create', 'update', 'patch', 'remove']
 
-console.log('Feathers app started on 127.0.0.1:3030');
+  // For each method, run the assertion
+  methods.forEach(method => {
+    it(`requires auth for ${method}`, function (done) {
+      return utils.assert.requiresAuth(todoServiceOnClient, method, done)
+    })
+  })
+})
 ```
 
 ## License
