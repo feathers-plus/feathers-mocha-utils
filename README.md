@@ -37,15 +37,15 @@ after(done => {
 
 Require this file at the top of every test, and it will take care of making sure the server starts and stops when it's time.
 
-## Assertion Utilties
-Several assertion utilities are included:
-- [`methodNotAllowed`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L16)
-- [`requiresAuth`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L32)
-- [`disableMultiItemChange`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L48)
-- [`notImplemented`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L65)
-- [`forbidden`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L81)
-- [`canPatch`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L105)
-- [`cannotPatch`](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js#L118)
+## Assertion Utilities
+Several assertion utilities are included.  Check out example usage in the [test file](https://github.com/feathers-plus/feathers-mocha-utils/blob/master/test/index.test.js).
+- `methodNotAllowed`
+- `requiresAuth`
+- `disableMultiItemChange`
+- `notImplemented`
+- `forbidden`
+- `canPatch`
+- `cannotPatch`
 
 All of the assertion utilities are in the `assert` attribute of the default export. Here's an example of how to use the `assert.requiresAuth` util.  The example assumes you have a `/todos` service that requires authentication for every method.
 
@@ -69,6 +69,16 @@ describe('Todo Service - Unauthenticated Client', function () {
   })
 })
 ```
+
+### Assertion APIs
+
+- `utils.assert.methodNotAllowed(service, method, done)`
+- `utils.assert.requiresAuth(service, method, done)`
+- `utils.assert.disableMultiItemChange(service, method, done)`
+- `utils.assert.notImplemented(service, method, done)`
+- `utils.assert.forbidden(service, method, done)`
+- `utils.assert.canPatch(service, recordToPatch, attributeToPatch, newValue, done)`
+- `utils.assert.cannotPatch(service, recordToPatch, attributeToPatch, newValue, errorClassName, errorMessage, done)`
 
 ## License
 
