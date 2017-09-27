@@ -128,7 +128,7 @@ describe('feathers-mocha-utils', () => {
           .then(response => {
             assert(response.test === false, 'should have patched properly')
 
-            return utils.assert.canPatch(service, response, 'test1', true, done)
+            return utils.assert.canPatch(service, response.id, { test1: true }, done)
           })
           .catch(done)
       })
@@ -141,7 +141,7 @@ describe('feathers-mocha-utils', () => {
           .then(response => {
             assert(response.test === false, 'should have patched properly')
 
-            return utils.assert.cannotPatch(service, response, 'noTouchy', true, 'bad-request', 'you cannot patch noTouchy', done)
+            return utils.assert.cannotPatch(service, response.id, { noTouchy: true }, 'bad-request', 'you cannot patch noTouchy', done)
           })
           .catch(done)
       })
