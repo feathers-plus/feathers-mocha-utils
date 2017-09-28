@@ -147,7 +147,7 @@ describe('feathers-mocha-utils', () => {
         service.get(item.id)
           .then(response => {
             assert(response, 'should have gotten record')
-            return utils.assert.canPatch(service, response, 'testDeep', deepData, done)
+            return utils.assert.canPatch(service, response.id, { testDeep: deepData }, done)
           })
           .catch(done)
       })
