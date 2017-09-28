@@ -1,5 +1,17 @@
 # Change Log
 
+## [v1.0.0](https://github.com/feathers-plus/feathers-mocha-utils/tree/v1.0.0) (2017-09-28)
+[Full Changelog](https://github.com/feathers-plus/feathers-mocha-utils/compare/v0.0.2...v1.0.0)
+
+**Closed issues:**
+
+- can-patch should account for object types [\#1](https://github.com/feathers-plus/feathers-mocha-utils/issues/1)
+
+**Merged pull requests:**
+
+- can-patch accounts for object comparison [\#3](https://github.com/feathers-plus/feathers-mocha-utils/pull/3) ([James0x57](https://github.com/James0x57))
+- Change to the data passed into the can-patch and cannot-patch [\#2](https://github.com/feathers-plus/feathers-mocha-utils/pull/2) ([Mattchewone](https://github.com/Mattchewone))
+
 ## [v0.0.2](https://github.com/feathers-plus/feathers-mocha-utils/tree/v0.0.2) (2017-09-23)
 [Full Changelog](https://github.com/feathers-plus/feathers-mocha-utils/compare/v0.0.1...v0.0.2)
 
