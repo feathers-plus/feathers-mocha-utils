@@ -114,7 +114,7 @@ describe('feathers-mocha-utils', () => {
 
     describe('canPatch & cannotPatch', function () {
       before(function () {
-        return app.service('patch-service').create({ test: true, test1: false })
+        return app.service('patch-service').create({ test: true, test1: false, testDeep: {} })
           .then(response => {
             this.item = response
           })
@@ -129,6 +129,25 @@ describe('feathers-mocha-utils', () => {
             assert(response.test === false, 'should have patched properly')
 
             return utils.assert.canPatch(service, response.id, { test1: true }, done)
+          })
+          .catch(done)
+      })
+
+      it('properly passes deep check when the user can patch', function (done) {
+        const item = this.item
+        const service = app.service('patch-service')
+        const deepData = {
+          turtles: ['all the way down'],
+          frequency: {
+            nature: '432 Hz',
+            love: '528 Hz'
+          }
+        }
+
+        service.get(item.id)
+          .then(response => {
+            assert(response, 'should have gotten record')
+            return utils.assert.canPatch(service, response, 'testDeep', deepData, done)
           })
           .catch(done)
       })
