@@ -2,7 +2,7 @@
   "name": "feathers-mocha-utils",
   "description": "Utilities for testing a FeathersJS app with Mocha",
   "version": "1.0.0",
-  "homepage": "https://github.com/feathersjs/feathers-mocha-utils",
+  "homepage": "https://github.com/feathers-plus/feathers-mocha-utils",
   "main": "lib/",
   "keywords": [
     "feathers",
@@ -11,7 +11,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/feathersjs/feathers-mocha-utils.git"
+    "url": "git://github.com/feathers-plus/feathers-mocha-utils.git"
   },
   "author": {
     "name": "Feathers contributors",
@@ -22,7 +22,7 @@
     "Steven Hansen <steven.hansen2015@gmail.com>"
   ],
   "bugs": {
-    "url": "https://github.com/feathersjs/feathers-mocha-utils/issues"
+    "url": "https://github.com/feathers-plus/feathers-mocha-utils/issues"
   },
   "engines": {
     "node": ">= 6.0.0"
