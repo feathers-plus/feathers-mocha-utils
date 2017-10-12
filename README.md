@@ -44,6 +44,7 @@ Several assertion utilities are included.  Check out example usage in the [test 
 - `disableMultiItemChange`
 - `notImplemented`
 - `forbidden`
+-  `notFound`
 - `canPatch`
 - `cannotPatch`
 
@@ -77,6 +78,7 @@ describe('Todo Service - Unauthenticated Client', function () {
 - `utils.assert.disableMultiItemChange(service, method, done)`
 - `utils.assert.notImplemented(service, method, done)`
 - `utils.assert.forbidden(service, method, done)`
+- `utils.assert.notFound(service, method, done)`
 - `utils.assert.canPatch(service, recordToPatch, attributeToPatch, newValue, done)`
 - `utils.assert.cannotPatch(service, recordToPatch, attributeToPatch, newValue, errorClassName, errorMessage, done)`
 
