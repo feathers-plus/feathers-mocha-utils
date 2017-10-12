@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.1.0](https://github.com/feathers-plus/feathers-mocha-utils/tree/v1.1.0) (2017-10-12)
+[Full Changelog](https://github.com/feathers-plus/feathers-mocha-utils/compare/v1.0.0...v1.1.0)
+
+**Merged pull requests:**
+
+- Adding support for testing 404 not found errors [\#4](https://github.com/feathers-plus/feathers-mocha-utils/pull/4) ([James0x57](https://github.com/James0x57))
+
 ## [v1.0.0](https://github.com/feathers-plus/feathers-mocha-utils/tree/v1.0.0) (2017-09-28)
 [Full Changelog](https://github.com/feathers-plus/feathers-mocha-utils/compare/v0.0.2...v1.0.0)
 
