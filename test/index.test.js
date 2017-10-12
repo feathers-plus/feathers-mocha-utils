@@ -12,6 +12,7 @@ describe('feathers-mocha-utils', () => {
       'disableMultiItemChange',
       'notImplemented',
       'forbidden',
+      'notFound',
       'canPatch',
       'cannotPatch'
     ]
@@ -91,6 +92,22 @@ describe('feathers-mocha-utils', () => {
             assert(error.code === 501, 'should get 501 error')
 
             return utils.assert.notImplemented(service, 'create', done)
+          })
+          .catch(done)
+      })
+    })
+
+    describe('notFound', function () {
+      it('properly passes with not-found response', function (done) {
+        const service = app.service('not-found')
+
+        service.create({})
+          .then(done)
+          .catch(error => {
+            assert(error.className === 'not-found', 'should get not-found error')
+            assert(error.code === 404, 'should get 404 error')
+
+            return utils.assert.notFound(service, 'create', done)
           })
           .catch(done)
       })

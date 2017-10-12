@@ -23,6 +23,7 @@ const app = feathers()
   .use('disable-multi-item-change', memory())
   .use('not-implemented', memory())
   .use('forbidden', memory())
+  .use('not-found', memory())
   .use('patch-service', memory())
 
 app.service('method-not-allowed').hooks({
@@ -60,6 +61,16 @@ app.service('not-implemented').hooks({
     create: [
       context => {
         return Promise.reject(new errors.NotImplemented())
+      }
+    ]
+  }
+})
+
+app.service('not-found').hooks({
+  before: {
+    create: [
+      context => {
+        return Promise.reject(new errors.NotFound())
       }
     ]
   }
