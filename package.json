@@ -1,7 +1,7 @@
 {
   "name": "feathers-mocha-utils",
   "description": "Utilities for testing a FeathersJS app with Mocha",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/feathers-plus/feathers-mocha-utils",
   "main": "lib/",
   "keywords": [
