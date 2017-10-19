@@ -1,3 +1,5 @@
+const fs = require('fs')
+const path = require('path')
 const assert = require('assert')
 const utils = require('../lib/index')
 const app = require('./app')
@@ -204,6 +206,52 @@ describe('feathers-mocha-utils', () => {
           assert(data.name === 'test', 'data has been passed through')
           done()
         })
+    })
+  })
+
+  describe('Seeder', function () {
+    const servicePath = 'service-1'
+    const serviceJsonPath = `services/${servicePath}/${servicePath}.seed.json`
+    const filePath = path.join(app.get('applicationRoot'), serviceJsonPath)
+
+    const seeder = {
+      loadFromSeed () {
+        fs.closeSync(fs.openSync(filePath, 'w'))
+        return Promise.resolve()
+      }
+    }
+
+    const fakeApp = Object.assign({}, app, {
+      service () {
+        return {
+          remove () {
+            return Promise.resolve()
+          }
+        }
+      }
+    })
+
+    describe('With existing `*.seed.json`', function () {
+      before(function (done) {
+        fs.closeSync(fs.openSync(filePath, 'w'))
+        done()
+      })
+
+      after(function () {
+        assert(fs.existsSync(filePath), 'the seed file was created')
+        fs.unlinkSync(filePath)
+      })
+
+      utils.seeder({ app: fakeApp, seeder, servicePath: 'service-1' })
+    })
+
+    describe('Without existing `*.seed.json`', function () {
+      after(function () {
+        assert(fs.existsSync(filePath), 'the seed file was created')
+        fs.unlinkSync(filePath)
+      })
+
+      utils.seeder({ app: fakeApp, seeder, servicePath: 'service-1' })
     })
   })
 })

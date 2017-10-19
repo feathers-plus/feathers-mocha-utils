@@ -1,3 +1,4 @@
+const path = require('path')
 const feathers = require('feathers')
 const bodyParser = require('body-parser')
 const hooks = require('feathers-hooks')
@@ -11,6 +12,8 @@ const { disableMultiItemChange } = require('feathers-hooks-common')
 const app = feathers()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
+
+  .set('applicationRoot', path.join(__dirname))
 
   // Set up Plugins and providers
   .configure(hooks())
