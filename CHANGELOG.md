@@ -1,5 +1,12 @@
 # Change Log
 
+## [v1.2.0](https://github.com/feathers-plus/feathers-mocha-utils/tree/v1.2.0) (2017-10-19)
+[Full Changelog](https://github.com/feathers-plus/feathers-mocha-utils/compare/v1.1.0...v1.2.0)
+
+**Merged pull requests:**
+
+- Added a delay util to the utils [\#5](https://github.com/feathers-plus/feathers-mocha-utils/pull/5) ([Mattchewone](https://github.com/Mattchewone))
+
 ## [v1.1.0](https://github.com/feathers-plus/feathers-mocha-utils/tree/v1.1.0) (2017-10-12)
 [Full Changelog](https://github.com/feathers-plus/feathers-mocha-utils/compare/v1.0.0...v1.1.0)
 
