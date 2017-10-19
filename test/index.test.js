@@ -183,4 +183,27 @@ describe('feathers-mocha-utils', () => {
       })
     })
   })
+
+  describe('Delay', function () {
+    it('adds a 200ms delay', function (done) {
+      const currentTimeStamp = Date.now()
+      Promise.resolve()
+        .then(utils.delay(200))
+        .then(() => {
+          assert(Date.now() + 200 > currentTimeStamp, 'delay has worked')
+          done()
+        })
+    })
+
+    it('passes through a value', function (done) {
+      const currentTimeStamp = Date.now()
+      Promise.resolve({ name: 'test' })
+        .then(utils.delay(500))
+        .then(data => {
+          assert(Date.now() + 500 > currentTimeStamp, 'delay has worked')
+          assert(data.name === 'test', 'data has been passed through')
+          done()
+        })
+    })
+  })
 })
